@@ -1,0 +1,42 @@
+// TeamBuilder class definition
+class TeamBuilder
+    private variables:
+        vector<Student> students
+        int team_size
+        bool prioritize_skills
+        vector<vector<Student>> teams
+        vector<vector<int>> team_scores
+        map<string, Student> student_map
+
+    public functions:
+        // Constructor
+        function TeamBuilder(vector<Student> students, int team_size, bool prioritize_skills)
+
+        // Form teams
+        function formTeams(bool prioritize_preferences)
+
+        // Print teams and scores
+        function printTeamsAndScores()
+
+        // Write teams to file
+        function writeTeamsToFile(string filename)
+
+    private functions:
+        // Load student data into map
+        function loadStudentMap()
+
+        // Check if students can work together
+        function canWorkTogether(vector<Student> team, Student new_member) returns bool
+
+        // Form teams by preferences
+        function formTeamsByPreferences()
+
+        // Form teams by skills
+        function formTeamsBySkills()
+
+        // Distribute remaining students
+        function distributeRemainingStudents(vector<Student> remaining_students, set<string> assigned_students)
+
+        // Calculate team scores
+        function calculateTeamScores()
+end class
