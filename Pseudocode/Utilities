@@ -1,0 +1,16 @@
+// Convert string to lowercase
+function toLowerCase(string str) returns string
+    transform str to lowercase
+    return str
+
+// Convert skill level string to integer
+function convertSkillLevel(string skill) returns int
+    convert skill to lowercase
+    if skill is "beginner"
+        return 1
+    else if skill is "intermediate"
+        return 2
+    else if skill is "advanced"
+        return 3
+    else
+        throw invalid_argument exception
