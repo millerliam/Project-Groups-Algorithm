@@ -1,0 +1,24 @@
+# Container Justifications
+
+## vector<Student> students (unique)
+The `vector` container is used to store the list of students because it provides dynamic resizing and allows random access to elements.
+This is essential for sorting and iterating through the student list. Using a vector ensures that we can efficiently manage the collection of 
+students as we read from the CSV file and form teams.
+
+## map<string, Student> student_map (unique)
+The `map` container is used to map student usernames to their corresponding `Student` objects. This allows for efficient lookups and ensures 
+that each student can be quickly accessed by their username. This is particularly useful when checking if a student can be assigned to a team
+based on preferences and restrictions, which is important because that is the entire point of the option to group by preferences.
+
+## set<string> assigned_students (unique)
+The `set` container is used to keep track of assigned students because it ensures uniqueness and provides efficient insertion and lookup 
+operations. This is important for checking whether a student has already been assigned to a team and to prevent duplicate assignments, which 
+was a problem that I ran into while trying to get the preferences option to work.
+
+## vector<vector<Student>> teams (nested)
+The `vector` of `vector<Student>` is used to store the teams. Each team is represented as a vector of `Student` objects. 
+This allows dynamic resizing and easy access to individual teams and their members, which is essential for the iterative team formation process.
+
+## vector<vector<int>> team_scores (nested)
+The `vector` of `vector<int>` is used to store the scores for each team. Each team's score is represented as a vector of integers, which allows 
+easy calculation and storage of multiple skill scores (the programming, debugging, and algorithm skills) for each team.
