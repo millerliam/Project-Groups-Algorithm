@@ -1,0 +1,62 @@
+// Read CSV file and return vector of Students
+function readCSV(string filename) returns vector<Student>
+    vector<Student> students
+    open file
+    skip header line
+    while read line from file
+        create Student object
+        parse and assign student attributes from CSV line
+        add student to students vector
+    close file
+    return students
+
+// Main function
+
+function main()
+    // Prompt the user for input
+    print "Enter the CSV file name (1 for Pref1, 2 for Pref2, 3 for Pref3): "
+    input file_choice
+
+    // Determine filename based on user input
+    if file_choice == 1
+        filename = "data/Assignment4 Roster Pref1.csv"
+    else if file_choice == 2
+        filename = "data/Assignment4 Roster Pref2.csv"
+    else if file_choice == 3
+        filename = "data/Assignment4 Roster Pref3.csv"
+    else
+        print "Invalid choice. Exiting."
+        return 1
+
+    // Prompt for team size
+    print "Enter the team size (3 or 4): "
+    input team_size
+
+    // Prompt for prioritization
+    print "Prioritize preferences (1) or skill balance (0)?: "
+    input prioritize_preferences
+
+    // Read students from CSV file
+    students = readCSV(filename)
+
+    // Check if students are read successfully
+    if students is empty
+        print "No students found. Exiting."
+        return 1
+
+    // Create TeamBuilder instance
+    teamBuilder = new TeamBuilder(students, team_size, not prioritize_preferences)
+
+    // Form teams
+    teamBuilder.formTeams(prioritize_preferences)
+
+    // Print teams and scores
+    teamBuilder.printTeamsAndScores()
+
+    // Write teams to file
+    try
+        teamBuilder.writeTeamsToFile("teams_output.csv")
+    catch exception as e
+        print "Error writing teams to file: " + e.message
+        return 1
+end function
