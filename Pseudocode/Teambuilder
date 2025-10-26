@@ -1,0 +1,101 @@
+// Constructor
+function TeamBuilder(vector<Student> students, int team_size, bool prioritize_skills)
+    this.students = students
+    this.team_size = team_size
+    this.prioritize_skills = prioritize_skills
+    loadStudentMap()
+
+// Load student data into map
+function loadStudentMap()
+    for each student in students
+        student_map[student.username] = student
+
+// Check if students can work together
+function canWorkTogether(vector<Student> team, Student new_member) returns bool
+    for each member in team
+        if new_member.username in member.dont_want_to_work_with or member.username in new_member.dont_want_to_work_with
+            return false
+    return true
+
+// Form teams
+function formTeams(bool prioritize_preferences)
+    if prioritize_preferences
+        formTeamsByPreferences()
+    else
+        formTeamsBySkills()
+    calculateTeamScores()
+
+// Form teams by preferences
+function formTeamsByPreferences()
+    set<string> assigned_students
+    vector<Student> remaining_students = students
+    vector<Student> team_leaders
+    int leader_index = 0
+    int num_teams = ceil(students.size() / team_size)
+    teams.resize(num_teams)
+
+    while not successful_formation
+        clear assigned_students, remaining_students, and teams
+        reset leader_index
+
+        for each team in teams
+            select and assign team leader
+            assign preferred students
+            if not successful, fill with random students
+
+        check if all teams are of the same size
+        if not, restart team formation
+        if successful, distribute remaining students
+
+// Form teams by skills
+function formTeamsBySkills()
+    set<string> assigned_students
+    vector<Student> remaining_students = students
+    int num_teams = ceil(students.size() / team_size)
+    teams.resize(num_teams)
+
+    sort remaining_students by total skill level
+    distribute students among teams to balance skills
+
+// Distribute remaining students
+function distributeRemainingStudents(vector<Student> remaining_students, set<string> assigned_students)
+    while remaining_students is not empty
+        for each team in teams
+            if team is not full and student can work with team
+                assign student to team
+
+// Calculate team scores
+function calculateTeamScores()
+    clear team_scores
+    for each team in teams
+        int programming_score = 0
+        int debugging_score = 0
+        int algorithm_score = 0
+        for each member in team
+            programming_score += member.programming_skill
+            debugging_score += member.debugging_skill
+            algorithm_score += member.algorithm_skill
+        store scores in team_scores
+
+    if prioritize_skills
+        for each scores in team_scores
+            if team_size == 3
+                ensure minimum scores of 5
+                ensure total minimum score of 16
+            else if team_size == 4
+                ensure minimum scores of 7
+                ensure total minimum score of 22
+
+    sort teams by total score
+
+// Print teams and scores
+function printTeamsAndScores()
+    for each team in teams
+        print team members and their scores
+
+// Write teams to file
+function writeTeamsToFile(string filename)
+    open file for writing
+    for each team in teams
+        write team members to file
+    close file
