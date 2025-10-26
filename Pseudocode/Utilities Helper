@@ -1,0 +1,4 @@
+// Utility functions
+function toLowerCase(string str) returns string
+
+function convertSkillLevel(string skill) returns int
